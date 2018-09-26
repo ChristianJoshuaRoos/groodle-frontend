@@ -1,4 +1,4 @@
-Groodle Members,
+Groodle Members, (A CHANGE!)
 
 In order to download and install the Angular framework to build the front end, do the following:
 

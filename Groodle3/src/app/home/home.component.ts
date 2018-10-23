@@ -17,7 +17,7 @@ through this component. */
 export class HomeComponent {
   
   courses: Course[] = [];
-  model = new Student('', '', []);
+  model = new Student('', '', '', []);
   hasCoursesTakenError = false;
 
   //Must mark FormPoster as a provider in Angular.

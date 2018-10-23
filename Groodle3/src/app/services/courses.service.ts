@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
-import "rxjs/Rx";
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import { Course } from "../models/course.model";
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CourseService
@@ -24,8 +24,9 @@ export class CourseService
 
     public getCourses():Observable<Course[]>
     {
-        return this.http.get("http://localhost:8080/api/course/getCourseList")
-                .map(this.extractData)
-                .catch(this.handleError);
+        return this.http.get("http://localhost:8080/api/course/getCourseList").pipe(
+            map(this.extractData),
+            catchError(this.handleError)
+        )
     }
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../models/student.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/Rx';
+import { map, catchError } from 'rxjs/operators';
+
 
 @Injectable()
 export class FormPoster
@@ -27,10 +28,9 @@ export class FormPoster
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.post('http://localhost:3100/poststudent', body, options)
-                        .map(this.extractData)
-                        .catch(this.handleError);
+        return this.http.post('http://localhost:3100/poststudent', body, options).pipe(
+            map(this.extractData),
+            catchError(this.handleError)
+        )
     }
-
-
 }

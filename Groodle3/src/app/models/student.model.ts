@@ -4,6 +4,7 @@ export class Student{
         public firstName: string,
         public lastName: string,
         public specialty: string,
+        public studentID: number,
         public coursesTaken: string[],
     )
     {}

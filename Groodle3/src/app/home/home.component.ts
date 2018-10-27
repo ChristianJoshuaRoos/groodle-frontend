@@ -5,21 +5,17 @@ import { CourseService } from '../services/courses.service';
 import { FormPoster } from '../services/form-poster.service';
 import { NgForm } from '@angular/forms';
 
+/* Component decorator is what marks the file as component, provides the tag to reference it, 
+links to the (currently empty) style sheet, and provides the template to display information
+through this component. */
 @Component({
   selector: 'home',
   styleUrls: ['./home.component.css'],
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
-  /*
-  courses = ['5101', '5125', '5130', '5208', '5210', '5311', '5401', '5402',
-    '5460', '5501', '5525', '5567', '5568', '5587', '5588', '5595', '5621',
-    '5622', '5623', '5631', '5632', '5661', '5670', '5675', '6101', '6110',
-    '6120', '6130', '6140', '6250', '6350', '6361', '6363', '6401', '6450',
-    '6452', '6501', '6588', '6595', '6603', '6621', '6625', '6627', '6631',
-    '6633', '6634', '6635', '6640', '6645', '6650'];
-    */
 
+export class HomeComponent {
+  
   courses: Course[] = [];
   model = new Student('', '', []);
   hasCoursesTakenError = false;
@@ -28,6 +24,7 @@ export class HomeComponent {
   constructor(private formPoster: FormPoster, 
               private courseService: CourseService)
   {
+    // fetch courses from database to be interacted with by user
     courseService.getCourses()
       .subscribe(
         data => {
@@ -39,6 +36,9 @@ export class HomeComponent {
     console.log(this.courses);
   }
 
+  /* This is the method that will be called when the user hits the submit button. 
+     It calls the postStudentForm() method to utilize the formPoster service to send
+      the student model to the back end */ 
   submitForm(form: NgForm)
   {
     //Validate form.
@@ -53,6 +53,8 @@ export class HomeComponent {
       )
   }
 
+  // Checks if the model's courseTaken variable has changed- if not, sends an error
+  // (because that means the user hasn't selected any courses)
   validateCoursesTaken(value)
   {
     if (value === ['default'])

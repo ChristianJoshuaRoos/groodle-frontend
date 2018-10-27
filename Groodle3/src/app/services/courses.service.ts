@@ -3,7 +3,8 @@ import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs";
 import { Course } from "../models/course.model";
 import { map, catchError } from 'rxjs/operators';
-
+/* This component contains the class files for both the Course 
+and formPoster services. The extractData() and handleError() methods are standard. */
 @Injectable()
 export class CourseService
 {
@@ -22,6 +23,7 @@ export class CourseService
         return Observable.throw(error.statusText);
     }
 
+    // gets course list from backend
     public getCourses():Observable<Course[]>
     {
         return this.http.get("http://localhost:8080/api/course/getCourseList").pipe(

@@ -1,11 +1,12 @@
+import { Course } from "./course.model";
 
 export class Student{
     constructor(
         public firstName: string,
         public lastName: string,
-        public specialty: string,
-        public studentID: number,
-        public coursesTaken: string[],
+        public concentration: string,
+        public studentID: string,
+        public coursesTaken: Course[],
     )
     {}
 }

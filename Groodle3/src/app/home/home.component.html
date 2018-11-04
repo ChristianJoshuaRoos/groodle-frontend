@@ -23,16 +23,16 @@
                 </div>
  
                 <div class="form-group">
-                    <label class="control-label">Specialty</label>
-                    <select #specialty="ngModel" required class="form-control"
-                            name="specialty"
-                            [(ngModel)]="model.specialty">
-                        <option *ngFor="let specialty of specialties" [ngValue]="specialty">
-                            {{ specialty }}
+                    <label class="control-label">Concentration</label>
+                    <select #concentration="ngModel" required class="form-control"
+                            name="concentration"
+                            [(ngModel)]="model.concentration">
+                        <option *ngFor="let concentration of concentrations" [ngValue]="concentration">
+                            {{ concentration }}
                         </option>    
                     </select>
-                    <div *ngIf="specialty.invalid && specialty.touched" class="alert alert-danger">
-                            Specialty is required.
+                    <div *ngIf="concentration.invalid && concentration.touched" class="alert alert-danger">
+                            Concentration is required.
                     </div>
                 </div>
 
@@ -44,7 +44,7 @@
                             (change)="validateCoursesTaken(coursesTaken.value)"
                             [(ngModel)]="model.coursesTaken">
                         <option *ngFor="let course of courses" [ngValue]="course">
-                            {{ course.course_id + ": " + course.course_name }}
+                            {{ course.courseId + ": " + course.courseTitle }}
                         </option>
                     </select>
                 </div>
@@ -56,17 +56,33 @@
         <div class="col-md-7">
             <div class="container">
                 <div class="card" *ngFor="let course of model.coursesTaken">
-                    <div class="card-header">{{ course.course_name }}</div>
+                    <div class="card-header">{{ course.courseTitle }}</div>
                     <div class="card-body">
-                        {{ course.course_description }}
+                        {{ course.courseDescription }}
                     </div>
                 </div>
             </div>
+            
             <!--
             Model: {{ model | json }}
             <br>
             Angular: {{ form.value | json }}
             -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" *ngIf="recommendation">
+        <div class="col-md-12">
+            <div class="card border-dark mb-3">
+                <div class="card-header" style="background-color: #c8aeb1">Depth Recommendation: {{ recommendation.depthRecommendation.concentration }}</div>
+                <div class="card-body text-dark">
+                    <div *ngFor="let course of recommendation.depthRecommendation.recommendedCourses">
+                    {{ course.courseId + ": " + course.courseTitle }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ import { Course } from '../models/course.model';
 import { CourseService } from '../services/courses.service';
 import { FormPoster } from '../services/form-poster.service';
 import { NgForm } from '@angular/forms';
+import { Recommendation } from '../models/recommendation.model';
 
 /* Component decorator is what marks the file as component, provides the tag to reference it, 
 links to the (currently empty) style sheet, and provides the template to display information
@@ -13,11 +14,16 @@ through this component. */
   styleUrls: ['./home.component.css'],
   templateUrl: './home.component.html'
 })
-
 export class HomeComponent {
+
+  recommendation: Recommendation;
+  concentrations = ['Theoretical Computer Science and Programming Languages',
+    'Systems and Network', 'Software Systems', 'Software Engineering',
+    'Information Assurance', 'Database Systems and Distributed Applications',
+    'Computer Graphics and Visual Computing', 'Artificial Intelligence'];
   
   courses: Course[] = [];
-  model = new Student('', '', '', []);
+  model = new Student('', '', '', '', []);
   hasCoursesTakenError = false;
 
   //Must mark FormPoster as a provider in Angular.
@@ -48,8 +54,12 @@ export class HomeComponent {
 
     this.formPoster.postStudentForm(this.model)
       .subscribe(
-        data => console.log('Success: ', data),
-        err => console.log('Error: ', err)
+        data => {console.log('Success: ', data);
+        this.recommendation = data;
+      },
+        err => {console.log('Error: ', err);
+        this.recommendation = this.formPoster.dummyData;
+      }
       )
   }
 

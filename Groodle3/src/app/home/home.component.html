@@ -1,6 +1,6 @@
 <div class="container">
     <h3>Groodle</h3>
-    <div class="row">
+    <div class="row" *ngIf="!recommendation">
         <div class="col-md-5">
             <form #form="ngForm" (submit)="submitForm(form)" novalidate>
                 
@@ -22,6 +22,15 @@
                     </div>
                 </div>
  
+                <div class="form-group" [class.has-error]="studentID.invalid && studentID.dirty">
+                    <label class="control-label">Student ID</label>
+                    <input #studentID="ngModel" required type="text" class="form-control" name="studentID" 
+                    [(ngModel)]="model.studentID">
+                    <div *ngIf="studentID.invalid && studentID.dirty" class="alert alert-danger">
+                        Student ID is required.
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="control-label">Concentration</label>
                     <select #concentration="ngModel" required class="form-control"
@@ -72,9 +81,9 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" *ngIf="recommendation">
     
-    <div class="row" *ngIf="recommendation">
+    <div class="row">
         <div class="col-md-12">
             <div class="card border-dark mb-3">
                 <div class="card-header" style="background-color: #c8aeb1">Depth Recommendation: {{ recommendation.depthRecommendation.concentration }}</div>
@@ -87,8 +96,7 @@
         </div>
     </div>
 
-    
-    <div class="row" *ngIf="recommendation">
+    <div class="row">
         <div class="col-md-12">
             <div class="card border-dark mb-3" *ngFor="let rec of recommendation.breadthRecommendations">
                 <div class="card-header" style="background-color:lavender">Breath Recommendation: {{ rec.concentration }}</div>
@@ -101,27 +109,14 @@
         </div>
     </div>
     
-
-    <!--
-    <div class="row" *ngIf="recommendation">
-        <div class="col-md-12">
-            <div class="card border-dark mb-3">
-                <div class="card-header" style="background-color:skyblue">Breadth Recommendations: {{ recommendation.breadthRecommendations }}</div>
-                <div class="card-body text-dark">
-                    <div *ngFor="let course of recommendation.breadthRecommendations.concentration.recommendedCourses">
-                        {{ course.courseId + ": " + course.courseTitle }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-
+    <button class="btn btn-secondary" (click)="back()">
+        Back To Search
+    </button>
+    
     <!--
     <div class="row" *ngIf="recommendation">
         <div class="container">
             <div class="card-columns">
-                
                 <div class="card border-dark mb-3" *ngFor="let rec of recommendation.breadthRecommendations">
                     <div class="card-header" style="background-color: lightgreen">Breadth Recommendation: {{ rec.concentration }}</div>
                         <div class="card-body text-dark">
@@ -135,4 +130,4 @@
         </div>
     </div>
     -->
-
+</div>

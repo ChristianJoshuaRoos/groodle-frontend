@@ -3,7 +3,7 @@ import { ConcentrationRecommendation } from "./concentration-recommendation.mode
 export class Recommendation
 {
     constructor(
-        public depthRecommendation: ConcentrationRecommendation,
+        public depthRecommendations: ConcentrationRecommendation,
         public breathRecommendations: ConcentrationRecommendation[]
     )
     {}

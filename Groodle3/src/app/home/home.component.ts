@@ -74,4 +74,8 @@ export class HomeComponent {
       this.hasCoursesTakenError = false;
   }
 
+  back()
+  {
+    this.recommendation = null;
+  }
 }

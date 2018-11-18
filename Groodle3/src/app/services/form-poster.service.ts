@@ -120,7 +120,7 @@ export class FormPoster
     private extractData(res: Response)
     {
         let body = res.json();
-        return body.fields || { };
+        return body || { };
     }
 
     private handleError(error: any)

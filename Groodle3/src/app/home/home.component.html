@@ -73,16 +73,66 @@
 </div>
 
 <div class="container">
+    
     <div class="row" *ngIf="recommendation">
         <div class="col-md-12">
             <div class="card border-dark mb-3">
                 <div class="card-header" style="background-color: #c8aeb1">Depth Recommendation: {{ recommendation.depthRecommendation.concentration }}</div>
                 <div class="card-body text-dark">
                     <div *ngFor="let course of recommendation.depthRecommendation.recommendedCourses">
-                    {{ course.courseId + ": " + course.courseTitle }}
+                        {{ course.courseId + ": " + course.courseTitle }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    
+    <div class="row" *ngIf="recommendation">
+        <div class="col-md-12">
+            <div class="card border-dark mb-3" *ngFor="let rec of recommendation.breadthRecommendations">
+                <div class="card-header" style="background-color:lavender">Breath Recommendation: {{ rec.concentration }}</div>
+                <div class="card-body text-dark">
+                    <div *ngFor="let course of rec.recommendedCourses">
+                        {{ course.courseId + ": " + course.courseTitle }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!--
+    <div class="row" *ngIf="recommendation">
+        <div class="col-md-12">
+            <div class="card border-dark mb-3">
+                <div class="card-header" style="background-color:skyblue">Breadth Recommendations: {{ recommendation.breadthRecommendations }}</div>
+                <div class="card-body text-dark">
+                    <div *ngFor="let course of recommendation.breadthRecommendations.concentration.recommendedCourses">
+                        {{ course.courseId + ": " + course.courseTitle }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!--
+    <div class="row" *ngIf="recommendation">
+        <div class="container">
+            <div class="card-columns">
+                
+                <div class="card border-dark mb-3" *ngFor="let rec of recommendation.breadthRecommendations">
+                    <div class="card-header" style="background-color: lightgreen">Breadth Recommendation: {{ rec.concentration }}</div>
+                        <div class="card-body text-dark">
+                            <div *ngFor="let course of rec.recommendedCourses">
+                                {{ course.courseId + ": " + course.courseTitle }}
+                            </div>
+                        </div>
+                </div>            
+
+            </div>
+        </div>
+    </div>
+    -->
+

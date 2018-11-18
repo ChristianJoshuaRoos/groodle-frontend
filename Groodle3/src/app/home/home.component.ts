@@ -5,6 +5,7 @@ import { CourseService } from '../services/courses.service';
 import { FormPoster } from '../services/form-poster.service';
 import { NgForm } from '@angular/forms';
 import { Recommendation } from '../models/recommendation.model';
+import { ConcentrationRecommendation } from '../models/concentration-recommendation.model';
 
 /* Component decorator is what marks the file as component, provides the tag to reference it, 
 links to the (currently empty) style sheet, and provides the template to display information
